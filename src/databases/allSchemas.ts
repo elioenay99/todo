@@ -42,6 +42,18 @@ export const insertNewTodoList = (newTodoList: TaskProps) =>
       .catch(error => reject(error));
   });
 
+  export const addPhotos = (newPhotos: TaskProps) =>
+    new Promise((resolve, reject) => {
+      Realm.open(databaseOptions)
+        .then(realm => {
+          realm.write(() => {
+            realm.create(todolist_schema, newPhotos);
+            resolve(newPhotos);
+          });
+        })
+        .catch(error => reject(error));
+    });
+
 export const updateTodoList = (todoList: TaskProps) =>
   new Promise<void>((resolve, reject) => {
     Realm.open(databaseOptions)
@@ -73,7 +85,6 @@ export const deleteTodoList = (todoListId: string) =>
       })
       .catch(error => reject(error));
   });
-
 export const deleteAllTodoList = () =>
   new Promise<void>((resolve, reject) => {
     Realm.open(databaseOptions)

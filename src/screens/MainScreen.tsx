@@ -27,7 +27,9 @@ import {
   queryAllTodoLists,
   insertNewTodoList,
   deleteAllTodoList,
+  addPhotos
 } from '../databases/allSchemas';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 interface MainScreenProps {
   todo: TaskProps[];
@@ -37,6 +39,7 @@ interface MainScreenProps {
   updateTask: any;
   setTasks: any;
   deleteAll: any;
+  addPhotos: any;
 }
 
 const styles = StyleSheet.create({});
@@ -195,7 +198,6 @@ const MainScreen: React.FC<MainScreenProps> = (props): ReactElement => {
             source={require('../assets/icons/add-button.png')}
           />
         </TouchableOpacity>
-        
       </View>
       <FlatList
         contentContainerStyle={{paddingBottom: 64}}
@@ -205,6 +207,8 @@ const MainScreen: React.FC<MainScreenProps> = (props): ReactElement => {
       />
     </View>
   );
+
+  
 };
 
 const mapStateToProps = (state: any) => {
